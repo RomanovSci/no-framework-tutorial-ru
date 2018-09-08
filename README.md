@@ -1,6 +1,5 @@
 ## Руководство по созданию PHP приложения без фреймворка [Перевод]
 
----
 ### [Ссылка на оригинал](https://github.com/PatrickLouys/no-framework-tutorial)
 ---
 
