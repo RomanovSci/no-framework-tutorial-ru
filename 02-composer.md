@@ -1,4 +1,4 @@
-[<< Контроллер запросов](01-front-controller.md) | [Обработка ошибок >>](03-error-handler.md)
+[<< Контроллер запросов](01-front-controller.md) | [Обработчик ошибок >>](03-error-handler.md)
 
 ### Composer
 
@@ -46,4 +46,4 @@ Composer создаст папку vendor и `composer.lock` файл котор
 
 Теперь у нас есть каркас, который мы можем использовать для дальнейшей настройки проекта.
 
-[<< Контроллер запросов](01-front-controller.md) | [Обработка ошибок >>](03-error-handler.md)
+[<< Контроллер запросов](01-front-controller.md) | [Обработчик ошибок >>](03-error-handler.md)
