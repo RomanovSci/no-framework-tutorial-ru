@@ -18,7 +18,7 @@
 
 1. [Контроллер запросов](01-front-controller.md)
 2. [Composer](02-composer.md)
-3. [Обработка ошибок](03-error-handler.md)
+3. [Обработчик ошибок](03-error-handler.md)
 4. [HTTP](04-http.md)
 5. [Роутинг](05-router.md)
 6. [Dispatching to a Class](06-dispatching-to-a-class.md)
