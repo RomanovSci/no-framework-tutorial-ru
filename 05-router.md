@@ -1,4 +1,4 @@
-[<< HTTP](04-http.md) | [Контроллер >>](06-dispatching-to-a-class.md)
+[<< HTTP](04-http.md) | [Контроллер >>](06-controller.md)
 
 ### Маршрутизатор
 
@@ -74,4 +74,4 @@ $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
 ```
 Конечно так выглядит намного лучше, но теперь обработчики запросов находятся в файле `Routes.php`. Давайте исправим этот момент в следующем разделе. 
 
-[<< HTTP](04-http.md) | [Контроллер >>](06-dispatching-to-a-class.md)
+[<< HTTP](04-http.md) | [Контроллер >>](06-controller.md)
