@@ -1,4 +1,4 @@
-## Руководство по созданию PHP приложения без фреймворка [Перевод]
+## Руководство по созданию PHP приложения без фреймворков [Перевод]
 
 ### Введение
 
@@ -16,12 +16,12 @@
 
 ### Разделы
 
-1. [Контроллер запросов](01-front-controller.md)
+1. [Точка входа](01-front-controller.md)
 2. [Composer](02-composer.md)
 3. [Обработчик ошибок](03-error-handler.md)
 4. [HTTP](04-http.md)
-5. [Роутер](05-router.md)
-6. [Dispatching to a Class](06-dispatching-to-a-class.md)
+5. [Маршрутизатор](05-router.md)
+6. [Контроллер](06-dispatching-to-a-class.md)
 7. [Инверсия управления](07-inversion-of-control.md)
 8. [Внедрение зависимостей](08-dependency-injector.md)
 9. [Шаблонизатор](09-templating.md)
