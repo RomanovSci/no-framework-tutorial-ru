@@ -21,7 +21,7 @@
 3. [Обработчик ошибок](03-error-handler.md)
 4. [HTTP](04-http.md)
 5. [Маршрутизатор](05-router.md)
-6. [Контроллер](06-dispatching-to-a-class.md)
+6. [Контроллер](06-controller.md)
 7. [Инверсия управления](07-inversion-of-control.md)
 8. [Внедрение зависимостей](08-dependency-injector.md)
 9. [Шаблонизатор](09-templating.md)
