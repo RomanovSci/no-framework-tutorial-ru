@@ -23,7 +23,7 @@
 5. [Маршрутизатор](05-router.md)
 6. [Контроллер](06-controller.md)
 7. [Инверсия управления](07-inversion-of-control.md)
-8. [Внедрение зависимостей](08-dependency-injector.md)
+8. [Инъектор зависимостей](08-dependency-injector.md)
 9. [Шаблонизатор](09-templating.md)
 10. [Динамические страницы](10-dynamic-pages.md)
 11. [Навигация](11-page-menu.md)
