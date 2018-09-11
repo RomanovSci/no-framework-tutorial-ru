@@ -1,4 +1,4 @@
-[<< previous](07-inversion-of-control.md) | [next >>](09-templating.md)
+[<< Инверсия управления](07-inversion-of-control.md) | [Шаблонизатор >>](09-templating.md)
 
 ### Инъектор зависимостей
 
@@ -31,11 +31,11 @@ return $injector;
 
 Перед тем как продолжить, вы должны понимать что такое `alias`, `share` и `define`. Об этом можно узнать на [странице документации пакета](https://github.com/rdlowrey/Auryn).
 
-You are sharing the HTTP objects because there would not be much point in adding content to one object and then returning another one. So by sharing it you always get the same instance.
+Мы шарим HTTP объекты, так как нету смысла добавлять контент к одному объекту и потом возвращать этот же контент к другому. С помощью шаринга мы работаем с одним и тем же объектом на протяжении всего сеанса.
 
-The alias allows you to type hint the interface instead of the class name. This makes it easy to switch the implementation without having to go back and edit all your classes that use the old implementation.
+Алиасы позволяют нам работать с интерфейсами вместо классов. Теперь все классы которые требуют объект имплементирующий интерфейс `Http\Response` будут получать на вход объект типа `Http\HttpResponse` и если вы захотите изменить конкретную реализацию объекта респонса, вы смомоежете сделать это в одном месте, вместо того чтобы изменять код в каждом классе.
 
-Of course your `Bootstrap.php` will also need to be changed. Before you were setting up `$request` and `$response` with `new` calls. Switch that to the injector now so that we are using the same instance of those objects everywhere.
+Конечно же нам нужно подправить `Bootstrap.php`. Теперь вместо того, чтобы создавать объекты `$request` и `$response` с помощью оператора `new`, за нас это будет делать инъектор. Теперь мы уверен в том, что каждый класс будет использовать один и тот же экземпляр класса запроса и ответа:
 
 ```php
 $injector = include('Dependencies.php');
@@ -44,23 +44,22 @@ $request = $injector->make('Http\HttpRequest');
 $response = $injector->make('Http\HttpResponse');
 ```
 
-The other part that has to be changed is the dispatching of the route. Before you had the following code:
+Также изменим часть создания класса контроллера с:
 
 ```php
 $class = new $className($response);
 $class->$method($vars);
 ```
-
-Change that to the following:
+На:
 
 ```php
 $class = $injector->make($className);
 $class->$method($vars);
 ```
 
-Now all your controller constructor dependencies will be automatically resolved with Auryn.
+Теперь все зависимости контроллеров будут резолвится автоматически с помощью пакета Auryn.
 
-Go back to your `Homepage` controller and change it to the following:
+Давайте немного порефакторим `Homepage`:
 
 ```php
 <?php declare(strict_types = 1);
@@ -89,9 +88,8 @@ class Homepage
     }
 }
 ```
+Теперь, как вы заметили, класс контроллера имеет две зависимости. Давайте перейдем по ссылке и посмотрим что у нас получилось: `http://localhost:8000/?name=Arthur%20Dent`.
 
-As you can see now the class has two dependencies. Try to access the page with a GET parameter like this `http://localhost:8000/?name=Arthur%20Dent`.
+Поздравляю, мы полностью заложили фундамент для нашего приложения.
 
-Congratulations, you have now successfully laid the groundwork for your application. 
-
-[<< previous](07-inversion-of-control.md) | [next >>](09-templating.md)
+[<< Инверсия управления](07-inversion-of-control.md) | [Шаблонизатор >>](09-templating.md)
