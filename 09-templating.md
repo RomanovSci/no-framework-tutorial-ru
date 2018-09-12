@@ -8,23 +8,21 @@ PHP не нуждается в сторонних механизмах шабл�
 
 В данном руководстве мы будем использовать PHP реализацию [Mustache](https://github.com/bobthecow/mustache.php). Давайте установим пакет: (`composer require mustache/mustache`).
 
-Еще могу выделить хорошую альтернативу: [Twig](http://twig.sensiolabs.org/)
+Еще могу выделить [Twig](http://twig.sensiolabs.org/), как хорошую альтернативу.
 
-Now please go and have a look at the source code of the [engine class](https://github.com/bobthecow/mustache.php/blob/master/src/Mustache/Engine.php). As you can see, the class does not implement an interface.
+Давайте посмотрим на исходный код [движка](https://github.com/bobthecow/mustache.php/blob/master/src/Mustache/Engine.php). Как вы видите, данный класс не имплементирует никакой интерфейс.
 
-You could just type hint against the concrete class. But the problem with this approach is that you create tight coupling.
+Мы конечно можем при внедрении шаблонизатора привзятся к конкретному классу, но минус данного подхода в том, что теперь мы будем тесно связаны с реализацией, а не с абстракцией.
 
-In other words, all your code that uses the engine will be coupled to this mustache package. If you want to change the implementation you have a problem. Maybe you want to switch to Twig, maybe you want to write your own class or you want to add functionality to the engine. You can't do that without going back and changing all your code that is tightly coupled.
+Другими словами, весь ваш код который использует шаблонизатор будет зависеть от пакета `mustache`. Теперь если вы захотите изменить реализацию, то просто так это сделать не выйдет. Возможно вы захотите переключится на `Twig`, или возможно захотите  использовать свой собственный шаблонизатор. В следствии тесной связи с реализацией нужно будет исправить много кода.
 
-What we want is loose coupling. We will type hint against an interface and not a class/implementation. So if you need another implementation, you just implement that interface in your new class and inject the new class instead. 
+Конечно хотелось бы не зависеть от реализации и в нашем случае это поправимо. Но вместо редактирования кода стороннего пакета предлагаю использовать [адаптер](http://en.wikipedia.org/wiki/Adapter_pattern). Звучит это намного сложнее чем есть на самом деле.
 
-Instead of editing the code of the package we will use the [adapter pattern](http://en.wikipedia.org/wiki/Adapter_pattern). This sounds a lot more complicated than it is, so just follow along.
+Для начала определим нужный нам интерфейс. Все мы [помним принцип разделения интерфейсов](https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF_%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0), который гласит что слишком «толстые» интерфейсы необходимо разделять на более маленькие.
 
-First let's define the interface that we want. Remember the [interface segregation principle](http://en.wikipedia.org/wiki/Interface_segregation_principle). This means that instead of large interfaces with a lot of methods we want to make each interface as small as possible. A class can extend multiple interfaces if necessary.
+Итак, что должен делать наш шаблонизатор? Сейчас нам нужен только метод рендеринга. Давайте создадим папку `Template` в корневой директории проекта `src/`, где мы будем хранить все файлы связанные с шаблонизацией.
 
-So what does our template engine actually need to do? For now we really just need a simple `render` method. Create a new folder in your `src/` folder with the name `Template` where you can put all the template related things.
-
-In there create a new interface `Renderer.php` that looks like this:
+В папке `Template` создадим `Renderer.php` файл, который должен выглядеть следующим образом:
 
 ```php
 <?php declare(strict_types = 1);
@@ -37,7 +35,7 @@ interface Renderer
 }
 ```
 
-Now that this is sorted out, let's create the implementation for mustache. In the same folder, create the file `MustacheRenderer.php` with the following content:
+Интерфейс готов, теперь давайте создадим реализацию для `mustache`. В этой же папке создаем файл `MustacheRenderer.php`:
 
 ```php
 <?php declare(strict_types = 1);
@@ -62,13 +60,13 @@ class MustacheRenderer implements Renderer
 }
 ```
 
-As you can see the adapter is really simple. While the original class had a lot of methods, our adapter is really simple and only fulfills the interface.
+Как вы видите, адаптер получился очень простой.
 
-Of course we also have to add a definition in our `Dependencies.php` file because otherwise the injector won't know which implementation he has to inject when you hint for the interface. Add this line:
+Теперь нужно добавить алиас в `Dependencies.php`, так как инъектор пока ничего на знает о созданном ранее интерфейсе. Добавим строку:
 
 `$injector->alias('Example\Template\Renderer', 'Example\Template\MustacheRenderer');`
 
-Now in your `Homepage` controller, add the new dependency like this:
+Теперь можем добавить еще один аргумент к контроллеру `Homepage`:
 
 ```php
 <?php declare(strict_types = 1);
@@ -98,7 +96,7 @@ class Homepage
 ...
 ```
 
-We also have to rewrite the `show` method. Please note that while we are just passing in a simple array, Mustache also gives you the option to pass in a view context object. We will go over this later, for now let's keep it as simple as possible.
+Теперь перепишем метод `show`. Обратите внимание что сейчас шаблонизатор принимает массив. Это сделано для простоты примера. Также `Mustache` предоставляет возможность передавать объект контекста представления. Но к более сложным вещам мы перейдем немного позже:
 
 ```php
     public function show()
