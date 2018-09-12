@@ -1,4 +1,4 @@
-[<< Инверсия управления](07-inversion-of-control.md) | [Шаблонизатор >>](09-templating.md)
+[<< Инверсия управления](07-inversion-of-control.md) | [Шаблонизация >>](09-templating.md)
 
 ### Инъектор зависимостей
 
@@ -92,4 +92,4 @@ class Homepage
 
 Поздравляю, мы полностью заложили фундамент для нашего приложения.
 
-[<< Инверсия управления](07-inversion-of-control.md) | [Шаблонизатор >>](09-templating.md)
+[<< Инверсия управления](07-inversion-of-control.md) | [Шаблонизация >>](09-templating.md)
