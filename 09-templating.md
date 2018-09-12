@@ -109,9 +109,7 @@ class Homepage
     }
 ```
 
-Now go check quickly in your browser if everything works. By default Mustache uses a simple string handler. But what we want is template files, so let's go back and change that.
-
-To make this change we need to pass an options array to the `Mustache_Engine` constructor. So let's go back to the `Dependencies.php` file and add the following code:
+По умолчанию `Mustache` использует простой парсер строк. Но нам хотелось бы использовать файлы шаблонов. Все что нам нужно, это передать конструктору `Mustache_Engine` нужные параметры. Даввайте перейдем в `Dependencies.php` и напишем следующий код:
 
 ```php
 $injector->define('Mustache_Engine', [
@@ -123,17 +121,15 @@ $injector->define('Mustache_Engine', [
 ]);
 ```
 
-We are passing an options array because we want to use the `.html` extension instead of the default `.mustache` extension. Why? Other template languages use a similar syntax and if we ever decide to change to something else then we won't have to rename all the template files.
+Мы передаем массив с параметрами, так как хотели бы использовать расширение `.html` вместо `.mustache`, которое установлено по умолчанию. Почему? Другие шаблонизаторы используют подобный синтаксис и если мы все же захотим изменить шаблонизатор, нам не придется переименовыввать все файлы шаблонов.
 
-In your project root folder, create a `templates` folder. In there, create a file `Homepage.html`. The content of the file should look like this:
+В корневой директории проекта создадим папку `templates`. Создадим файл `Homepage.html` и вставим в него код:
 
 ```
 <h1>Hello World</h1>
 Hello {{ name }}
 ```
 
-Now you can go back to your `Homepage` controller and change the render line to `$html = $this->renderer->render('Homepage', $data);`
+Теперь мы можем вернутся к `Homepage` контроллеру и изменить строку где вызывается метод рендер на `$html = $this->renderer->render('Homepage', $data);`. Откроем главную страницу сайта в браузере и убедимся что все работает корректно.
 
-Navigate to the hello page in your browser to make sure everything works. And as always, don't forget to commit your changes.
-
-[<< previous](08-dependency-injector.md) | [next >>](10-dynamic-pages.md)
+[<< Инъектор зависимостей](08-dependency-injector.md) | [Динамические страницы >>](10-dynamic-pages.md)
