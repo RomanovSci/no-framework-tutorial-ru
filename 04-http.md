@@ -6,7 +6,7 @@
 
 И опять же, мы не будем изобретать велосипед, а просто установим сторонний модуль для работы с HTTP. Я решил написать свой собственный [HTTP компонент](https://github.com/PatrickLouys/http), так как меня не сильно устраивают существующие, но вам не обязательно делать то же что и я :)
 
-Как альтернативу можно выбрать один из следующих пакетов: [Symfony HttpFoundation](https://github.com/symfony/HttpFoundation), [Nette HTTP Component](https://github.com/nette/http), [Aura Web](https://github.com/auraphp/Aura.Web), [sabre/http](https://github.com/fruux/sabre-http). В данном туториале я буду использовать компонент написаный мною, но вы можете использовать любой другой который вам нравится.
+Как альтернативу можно выбрать один из пакетов: [Symfony HttpFoundation](https://github.com/symfony/HttpFoundation), [Nette HTTP Component](https://github.com/nette/http), [Aura Web](https://github.com/auraphp/Aura.Web), [sabre/http](https://github.com/fruux/sabre-http). В данном туториале я буду использовать компонент написаный мною, но вы можете использовать любой другой который вам нравится.
 
 Давайте добавим нужный нам пакет в `composer.json` и запустим команду `composer update`:
 
