@@ -33,7 +33,7 @@ class Homepage
 
 Обратите внимание, что мы [импортируем](http://php.net/manual/ru/language.namespaces.importing.php) `Http\Response` в верхней части файла. Это означает, что всякий раз, когда вы используете имя `Response` внутри данного файла, PHP подставляет полное имя этого класса.
 
-Мы явно указываем тип передаваемого в конструктор аргумента как `Http\Response`. В данном случае, `Http\Response` является интерфейсом, а значит любой класс который реализовывает данный интерфейс может быть внедрен в наш контроллер. Более подробно об [объявлении типов](http://fi2.php.net/manual/ru/functions.arguments.php#functions.arguments.type-declaration) и [интерфейсах](http://fi2.php.net/manual/ru/language.oop5.interfaces.php).
+Мы явно указываем тип передаваемого в конструктор аргумента как `Http\Response`. В данном случае `Http\Response` является интерфейсом, а значит любой класс который реализовывает данный интерфейс может быть внедрен в наш контроллер. Более подробно об [объявлении типов](http://fi2.php.net/manual/ru/functions.arguments.php#functions.arguments.type-declaration) и [интерфейсах](http://fi2.php.net/manual/ru/language.oop5.interfaces.php).
 
 Поскольку мы еще ничего не внедрили, наш код будет генерировать ошибку. Давайте это исправим. В файле `Bootstrap.php` при создании экземпляра контроллера, передадим объект ответа в аргумент конструктора:
 
