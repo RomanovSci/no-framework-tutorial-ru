@@ -16,7 +16,7 @@
 require __DIR__ . '/../src/Bootstrap.php';
 ```
 
-`__DIR__` это [волшебная константа](http://php.net/manual/en/language.constants.predefined.php) которая содержит путь к текущей директории.
+`__DIR__` это [волшебная константа](http://php.net/manual/ru/language.constants.predefined.php) которая содержит путь к текущей директории.
 
 `declare(strict_types = 1);` устанавливает [строгую типизацию](http://php.net/manual/ru/functions.arguments.php#functions.arguments.type-declaration.strict). В данном руководстве мы будем использовать строгую типизацию во всех файлах.
 
