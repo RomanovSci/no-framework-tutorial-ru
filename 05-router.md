@@ -6,7 +6,7 @@
 
 В этом руководстве я буду использовать [FastRoute](https://github.com/nikic/FastRoute). Но вы можете выбрать любою другую библиотеку. Вот несколько альтернативных вариантов: [symfony/Routing](https://github.com/symfony/Routing), [Aura.Router](https://github.com/auraphp/Aura.Router), [fuelphp/routing](https://github.com/fuelphp/routing), [Klein](https://github.com/chriso/klein.php).
 
-Вы уже знаете, как устанавливать сторонние пакеты с помощью Composer, поэтому я упущу подробное описание данного шага. Теперь добавьте данный блок кода в `Bootstrap.php`, вместо сообщения 'hello world' которое мы добавляли в предыдущем разделе.
+Вы уже знаете, как устанавливать сторонние пакеты с помощью Composer, поэтому я опущу подробное описание данного шага. Теперь добавьте данный блок кода в `Bootstrap.php`, вместо сообщения 'hello world' которое мы добавляли в предыдущем разделе.
 
 ```php
 $dispatcher = \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r) {
